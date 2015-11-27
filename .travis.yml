@@ -52,5 +52,5 @@ deploy:
   file:
     - "${RELEASE_FILE}"
   on:
-    repo: taskcluster/slugid-go
+    repo: taskcluster/stateless-dns-go
     tags: true
