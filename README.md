@@ -126,6 +126,7 @@ Exit Codes:
 
 Examples:
   $ create-hostname --ip 203.115.35.2 --subdomain foo.com --expires 2016-06-04T16:04:03.739Z --secret 'cheese monkey'
+  znzsgaqaau2hl7h35f4owqn25s76j4h7apm3fe4qpy6pfxjk.foo.com
 ```
 
 License
