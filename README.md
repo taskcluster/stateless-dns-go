@@ -1,8 +1,10 @@
-stateless-dns-go - Compressed UUIDs for go (golang)
-============================================
-
+stateless-dns-go
+================
 <img src="https://tools.taskcluster.net/lib/assets/taskcluster-120.png" />
 
+A go (golang) port of https://github.com/taskcluster/stateless-dns-server/blob/master/index.js
+
+[![GoDoc](https://godoc.org/github.com/taskcluster/stateless-dns-go?status.svg)](https://godoc.org/github.com/taskcluster/stateless-dns-go)
 [![Build Status](https://travis-ci.org/taskcluster/stateless-dns-go.svg?branch=master)](http://travis-ci.org/taskcluster/stateless-dns-go)
 [![Coverage Status](https://coveralls.io/repos/taskcluster/stateless-dns-go/badge.svg?branch=master&service=github)](https://coveralls.io/github/taskcluster/stateless-dns-go?branch=master)
 [![License](https://img.shields.io/badge/license-MPL%202.0-orange.svg)](https://github.com/taskcluster/stateless-dns-go/blob/master/LICENSE)
