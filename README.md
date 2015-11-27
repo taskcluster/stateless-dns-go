@@ -133,8 +133,8 @@ Examples:
 
 License
 -------
-The `hostname` library is released on the MPL 2.0 license, see file `LICENSE`
-for the complete license.
+The stateless-dns-go library is released on the MPL 2.0 license, see file
+`LICENSE` for the complete license.
 
 Testing
 -------
