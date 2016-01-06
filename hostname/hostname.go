@@ -67,7 +67,7 @@ func New(ip net.IP, subdomain string, expires time.Time, secret string) (string,
 	if err != nil {
 		return "", err
 	}
-	expiryInUnixMillis := int64(expires.UnixNano() / 1000)
+	expiryInUnixMillis := int64(expires.UnixNano() / 1e6)
 	err = binary.Write(buf, binary.BigEndian, expiryInUnixMillis)
 	if err != nil {
 		return "", err
