@@ -77,10 +77,7 @@ func PrintHostname() {
 	subdomain := "foo.com"
 	expires := time.Now().Add(15 * time.Minute)
 	secret := "turnip-4tea-2nite"
-	name, err := hostname.New(ip, subdomain, expires, secret)
-	if err != nil {
-		panic(err)
-	}
+	name := hostname.New(ip, subdomain, expires, secret)
 	fmt.Printf("Hostname: '%s'\n", name)
 }
 ```
@@ -124,7 +121,6 @@ Exit Codes:
   66: Invalid SUBDOMAIN given
   67: Invalid EXPIRES given
   68: Invalid SECRET given
-  69: Some other problem
 
 Examples:
   $ create-hostname --ip 203.115.35.2 --subdomain foo.com --expires 2016-06-04T16:04:03.739Z --secret 'cheese monkey'

@@ -1,6 +1,7 @@
 package hostname_test
 
 import (
+	"fmt"
 	"net"
 	"time"
 
@@ -12,5 +13,5 @@ func ExampleNew() {
 	subdomain := "foo.com"
 	expires := time.Now().Add(15 * time.Minute)
 	secret := "turnip4tea"
-	hostname.New(ip, subdomain, expires, secret)
+	fmt.Println(hostname.New(ip, subdomain, expires, secret))
 }
