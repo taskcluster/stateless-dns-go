@@ -61,7 +61,7 @@ sub-domain label.
 Go library usage
 ----------------
 
-Here is a silly example:
+Here is a trivial example:
 
 ```go
 import (
