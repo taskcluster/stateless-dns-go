@@ -60,35 +60,38 @@ import (
 
 // New generates a temporary hostname for the given ip, with the given
 // subdomain, having the given expiry, using the given secret.
-func New(ip net.IP, subdomain string, expires time.Time, secret string) (string, error) {
+func New(ip net.IP, subdomain string, expires time.Time, secret string) string {
 	buf := new(bytes.Buffer)
 	ip4 := []byte(ip.To4())
 	_, err := buf.Write(ip4)
 	if err != nil {
-		return "", err
+		// The bytes.Buffer.Write actually returns nil, besides any error that can
+		// happens is out-of-memory, that shouldn't happen here. If it does
+		// I propose we declare gameover.
+		panic(err)
 	}
 	expiryInUnixMillis := int64(expires.UnixNano() / 1e6)
 	err = binary.Write(buf, binary.BigEndian, expiryInUnixMillis)
 	if err != nil {
-		return "", err
+		panic(err)
 	}
 	salt := make([]byte, 2)
 	_, err = rand.Read(salt)
 	if err != nil {
-		return "", err
+		panic(err)
 	}
 	_, err = buf.Write(salt)
 	if err != nil {
-		return "", err
+		panic(err)
 	}
 	hash := hmac.New(sha256.New, []byte(secret))
 	content := buf.Bytes()
 	_, err = hash.Write(content)
 	if err != nil {
-		return "", err
+		panic(err)
 	}
 	signature := hash.Sum([]byte{})[:16]
 	result := append(content, signature...)
 	label := base32.StdEncoding.EncodeToString(result)
-	return strings.ToLower(label + "." + subdomain), nil
+	return strings.ToLower(label + "." + subdomain)
 }

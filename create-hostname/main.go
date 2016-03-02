@@ -68,10 +68,6 @@ func main() {
 	// TODO: Validate SECRET
 	secret := arguments["SECRET"].(string)
 
-	name, err := hostname.New(ip, subdomain, expires, secret)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "create-hostname: ERR 69: Unexpected error occurred: '%s'\n", err)
-		os.Exit(69)
-	}
+	name := hostname.New(ip, subdomain, expires, secret)
 	fmt.Println(name)
 }
