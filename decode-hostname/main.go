@@ -23,7 +23,7 @@ Exit Codes:
    1: Unrecognised command line options
 
 Example:
-  $ decode-hostname --secret 'cheese monkey' --fqdn 'znzsgaqaau2hl7h35f4owqn25s76j4h7apm3fe4qpy6pfxjk.foo.com' --subdomain 'foo.com'
+  $ decode-hostname --fqdn 'znzsgaqaau2hl7h35f4owqn25s76j4h7apm3fe4qpy6pfxjk.foo.com' --subdomain 'foo.com' --secret 'cheese monkey'
 `
 )
 
