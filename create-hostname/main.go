@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	version = "create-hostname 1.0.4"
+	version = "create-hostname 1.0.6"
 	usage   = `
 Usage:
   create-hostname --ip IP --subdomain SUBDOMAIN --expires EXPIRES --secret SECRET
