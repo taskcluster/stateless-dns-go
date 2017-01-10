@@ -106,6 +106,7 @@ go get github.com/taskcluster/stateless-dns-go/create-hostname
 Command line usage
 ------------------
 
+Creating hostnames...
 
 ```
 Usage:
@@ -125,6 +126,25 @@ Exit Codes:
 Examples:
   $ create-hostname --ip 203.115.35.2 --subdomain foo.com --expires 2016-06-04T16:04:03.739Z --secret 'cheese monkey'
   znzsgaqaau2hl7h35f4owqn25s76j4h7apm3fe4qpy6pfxjk.foo.com
+```
+
+Decoding hostnames...
+
+```
+Usage:
+  decode-hostname --fqdn FQDN --subdomain SUBDOMAIN --secret SECRET
+  decode-hostname --help|-h
+  decode-hostname --version
+
+Exit Codes:
+   0: Success
+   1: Unrecognised command line options
+
+Example:
+  $ decode-hostname --fqdn aebagbaaaaadqfbf6nanb2v3zyzdeq27biltfievlqaktog2.foo.com --subdomain foo.com --secret 'Happy Birthday Pete!'
+  2017/01/10 18:50:08 IP: 1.2.3.4
+  2017/01/10 18:50:08 Expires: 1977-08-19 16:30:00 +0000 UTC
+  2017/01/10 18:50:08 Salt: [2]uint8{0xd0, 0xea}
 ```
 
 License

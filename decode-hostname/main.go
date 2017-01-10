@@ -23,7 +23,10 @@ Exit Codes:
    1: Unrecognised command line options
 
 Example:
-  $ decode-hostname --fqdn 'znzsgaqaau2hl7h35f4owqn25s76j4h7apm3fe4qpy6pfxjk.foo.com' --subdomain 'foo.com' --secret 'cheese monkey'
+  $ decode-hostname --fqdn aebagbaaaaadqfbf6nanb2v3zyzdeq27biltfievlqaktog2.foo.com --subdomain foo.com --secret 'Happy Birthday Pete!'
+  2017/01/10 18:50:08 IP: 1.2.3.4
+  2017/01/10 18:50:08 Expires: 1977-08-19 16:30:00 +0000 UTC
+  2017/01/10 18:50:08 Salt: [2]uint8{0xd0, 0xea}
 `
 )
 
