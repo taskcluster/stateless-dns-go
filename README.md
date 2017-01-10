@@ -89,6 +89,11 @@ __Binary installation__
 
 Download the create-hostname and/or decode-hostname command line tools for your
 platform from [here](https://github.com/taskcluster/stateless-dns-go/releases).
+If running on Mac or Linux, make sure to make the binary download executable:
+
+```
+$ chmod a+x '<downloaded file>'
+```
 
 __Source installation__
 
