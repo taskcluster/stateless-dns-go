@@ -12,6 +12,7 @@
 if [ -f "${GOPATH}/bin/create-hostname" ]; then
   mkdir "${GOPATH}/bin/linux_amd64"
   mv "${GOPATH}/bin/create-hostname" "${GOPATH}/bin/linux_amd64/create-hostname"
+  mv "${GOPATH}/bin/decode-hostname" "${GOPATH}/bin/linux_amd64/decode-hostname"
 fi
 
 # linux, darwin:
@@ -21,5 +22,7 @@ FILE_EXT=""
 # let's rename the release file because it has a 1:1 mapping with what it is called on
 # github releases, and therefore the name for each platform needs to be unique so that
 # they don't overwrite each other. Set a variable that can be used in .travis.yml
-export RELEASE_FILE="${TRAVIS_BUILD_DIR}/create-hostname-${GOOS}-${GOARCH}${FILE_EXT}"
-mv "${GOPATH}/bin/${GOOS}_${GOARCH}/create-hostname${FILE_EXT}" "${RELEASE_FILE}"
+export CREATE_HOSTNAME_RELEASE_FILE="${TRAVIS_BUILD_DIR}/create-hostname-${GOOS}-${GOARCH}${FILE_EXT}"
+export DECODE_HOSTNAME_RELEASE_FILE="${TRAVIS_BUILD_DIR}/decode-hostname-${GOOS}-${GOARCH}${FILE_EXT}"
+mv "${GOPATH}/bin/${GOOS}_${GOARCH}/create-hostname${FILE_EXT}" "${CREATE_HOSTNAME_RELEASE_FILE}"
+mv "${GOPATH}/bin/${GOOS}_${GOARCH}/decode-hostname${FILE_EXT}" "${DECODE_HOSTNAME_RELEASE_FILE}"

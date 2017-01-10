@@ -87,8 +87,8 @@ Installing command line tool
 
 __Binary installation__
 
-Download the create-hostname command line tool for your platform from
-[here](https://github.com/taskcluster/stateless-dns-go/releases).
+Download the create-hostname and/or decode-hostname command line tools for your
+platform from [here](https://github.com/taskcluster/stateless-dns-go/releases).
 
 __Source installation__
 
@@ -100,7 +100,7 @@ Requirements:
 Run:
 
 ```
-go get github.com/taskcluster/stateless-dns-go/create-hostname
+go get github.com/taskcluster/stateless-dns-go/...
 ```
 
 Command line usage
@@ -123,7 +123,7 @@ Exit Codes:
   67: Invalid EXPIRES given
   68: Invalid SECRET given
 
-Examples:
+Example:
   $ create-hostname --ip 203.115.35.2 --subdomain foo.com --expires 2016-06-04T16:04:03.739Z --secret 'cheese monkey'
   znzsgaqaau2hl7h35f4owqn25s76j4h7apm3fe4qpy6pfxjk.foo.com
 ```
@@ -158,5 +158,3 @@ Testing
 ```bash
 go test ./...
 ```
-
-TODO: write tests!

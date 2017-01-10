@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	version = "decode-hostname 1.0.0"
+	version = "decode-hostname 1.0.4"
 	usage   = `
 Usage:
   decode-hostname --fqdn FQDN --subdomain SUBDOMAIN --secret SECRET
