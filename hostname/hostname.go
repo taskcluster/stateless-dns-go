@@ -11,7 +11,7 @@
 // approach is that the DNS server is state-less, so there is no stale DNS
 // records to discard.
 //
-// In TaskCluster this is used to assign temporary sub-domain names to EC2 spot
+// In Taskcluster this is used to assign temporary sub-domain names to EC2 spot
 // nodes, such that we can host HTTPS resources, such as live logs, without
 // updating and cleaning up the state of the DNS server.
 //
