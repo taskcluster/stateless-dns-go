@@ -1,6 +1,7 @@
 stateless-dns-go
 ================
-<img src="https://tools.taskcluster.net/lib/assets/taskcluster-120.png" />
+
+[![logo](https://tools.taskcluster.net/b2d854df0391f8b777f39a486ebbc868.png)](https://tools.taskcluster.net/b2d854df0391f8b777f39a486ebbc868.png)
 
 A go (golang) port of https://github.com/taskcluster/stateless-dns-server/blob/master/index.js
 
