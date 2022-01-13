@@ -105,26 +105,30 @@ func getHash(content []byte, secret string) []byte {
 // stateless dns naming scheme, and returns its IP, expiry time and salt. If
 // the hostname is invalid for any reason, an error will be returned explaining
 // the cause.
-func Decode(fqdn, secret, subdomain string) (ip net.IP, expires time.Time, salt [2]byte, err error) {
+func Decode(fqdn, secret, subdomain string) (ip net.IP, expires time.Time, salt [2]byte, verified bool, err error) {
 	upperFQDN := strings.ToUpper(fqdn)
 	upperSubdomain := strings.ToUpper(subdomain)
 	if !strings.HasSuffix(upperFQDN, "."+upperSubdomain) {
-		return nil, time.Time{}, [2]byte{0, 0}, fmt.Errorf("Host %v is not valid - it does not have subdomain %v", fqdn, subdomain)
+		return nil, time.Time{}, [2]byte{0, 0}, false, fmt.Errorf("Host %v is not valid - it does not have subdomain %v", fqdn, subdomain)
 	}
 	label := upperFQDN[:len(upperFQDN)-len(upperSubdomain)-1]
 	bytes, err := base32.StdEncoding.DecodeString(label)
 	if err != nil {
-		return nil, time.Time{}, [2]byte{0, 0}, fmt.Errorf("Uppercase host label %v from FQDN %v is not valid base32 - %v", label, fqdn, err)
+		return nil, time.Time{}, [2]byte{0, 0}, false, fmt.Errorf("Uppercase host label %v from FQDN %v is not valid base32 - %v", label, fqdn, err)
 	}
 	if len(bytes) != 4+8+2+16 {
-		return nil, time.Time{}, [2]byte{0, 0}, fmt.Errorf("Decoded host label is not correct length (4+8+2+16 bytes) - it is %v bytes (%v)", len(bytes), label)
+		return nil, time.Time{}, [2]byte{0, 0}, false, fmt.Errorf("Decoded host label is not correct length (4+8+2+16 bytes) - it is %v bytes (%v)", len(bytes), label)
 	}
 	ip = net.IPv4(bytes[0], bytes[1], bytes[2], bytes[3])
 	var expiryInUnixMillis int64 = int64(bytes[4])<<56 + int64(bytes[5])<<48 + int64(bytes[6])<<40 + int64(bytes[7])<<32 + int64(bytes[8])<<24 + int64(bytes[9])<<16 + int64(bytes[10])<<8 + int64(bytes[11])
 	salt = [2]byte{bytes[12], bytes[13]}
-	hash := getHash(bytes[:14], secret)
-	if string(hash) != string(bytes[14:]) {
-		return nil, time.Time{}, [2]byte{0, 0}, fmt.Errorf("Unexpected hash %#v - was expecting %#v", hash, bytes[14:])
+	verified = false
+	if secret != "" {
+		hash := getHash(bytes[:14], secret)
+		if string(hash) != string(bytes[14:]) {
+			return nil, time.Time{}, [2]byte{0, 0}, false, fmt.Errorf("Unexpected hash %#v - was expecting %#v", hash, bytes[14:])
+		}
+		verified = true
 	}
-	return ip, time.Unix(expiryInUnixMillis/1000, 1e6*(expiryInUnixMillis%1000)).UTC(), salt, nil
+	return ip, time.Unix(expiryInUnixMillis/1000, 1e6*(expiryInUnixMillis%1000)).UTC(), salt, verified, nil
 }
