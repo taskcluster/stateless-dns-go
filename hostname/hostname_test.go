@@ -26,7 +26,7 @@ func TestEncodeDecode(t *testing.T) {
 	// encode
 	fqdn := hostname.New(ip, subdomain, expires, secret)
 	// decode
-	ip2, expires2, _, err := hostname.Decode(fqdn, secret, subdomain)
+	ip2, expires2, _, _, err := hostname.Decode(fqdn, secret, subdomain)
 	if err != nil {
 		t.Fatalf("Error when creating hostname: %v", err)
 	}
@@ -39,7 +39,7 @@ func TestEncodeDecode(t *testing.T) {
 }
 
 func ExampleDecode() {
-	ip, expires, salt, err := hostname.Decode("zmvtoaqaaaavkjlja2i2n2ligiol2idykqa3t7vk4vfakdv6.foo.com", "turnip4tea", "foo.com")
+	ip, expires, salt, _, err := hostname.Decode("zmvtoaqaaaavkjlja2i2n2ligiol2idykqa3t7vk4vfakdv6.foo.com", "turnip4tea", "foo.com")
 	if err != nil {
 		log.Fatalf("Not able to decode example hostname")
 	}
@@ -53,7 +53,7 @@ func ExampleDecode() {
 }
 
 func TestBadName(t *testing.T) {
-	_, _, _, err := hostname.Decode("zmvtoaqaaaavkjlja2i2n2ligiol2idykqa3t7vk4vfakdw6.foo.com", "turnip4tea", "foo.com")
+	_, _, _, _, err := hostname.Decode("zmvtoaqaaaavkjlja2i2n2ligiol2idykqa3t7vk4vfakdw6.foo.com", "turnip4tea", "foo.com")
 	if err == nil {
 		log.Fatalf("Was expecting an error as hash is invalid")
 	}
